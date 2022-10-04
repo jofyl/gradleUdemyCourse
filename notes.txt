@@ -1,3 +1,6 @@
+Introduction
+============
+
 Gradel is build automation tool
 comiple, then run the tests
 package the compiled source into packages (jar, war)
@@ -36,4 +39,25 @@ using camel case allows you call the task in abrev mode
 gradlew file, is an executable => automatically installs gradle for the project, that way you do not need to to have a global version of gradle installed
 also maintins its current version unless you update it
 that way you have gradle per project
-it uses the config from gradle/wrapper/gradle-wrapper.properties
+it uses the config from gradle/wrapper/gradle-wrapper.properties 
+
+Creating a Java project
+=======================
+in gradle.build
+include('app') => "app" name of the folder that contains src/main/... etc
+
+gradle is not heavy
+uses plugin "id 'application'" knows the tasks needed for a java project like
+build, compile, generate jar, distribute as .zip... etc
+
+gradle compileJava => generates the build folder
+gradle clean => cleans/removes the build folder
+gradle test => runs the unit tests
+
+gradle test generates a summary report under: /app/build/reports/tests/test => contains an html files that shows the final report
+
+This is how we tell gradle where the application's main method is
+application {
+    // Define the main class for the application.
+    mainClass = 'com.bharath.gradle.App'
+}
