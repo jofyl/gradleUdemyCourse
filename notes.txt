@@ -61,3 +61,38 @@ application {
     // Define the main class for the application.
     mainClass = 'com.bharath.gradle.App'
 }
+
+repositories {
+    // Use Maven Central for resolving dependencies.
+    mavenCentral()
+} => this is used to define which repositories shoud be searched when fetching dependencies
+
+dependencies {
+    // Use JUnit test framework.
+    testImplementation 'junit:junit:4.13.2'
+
+    // This dependency is used by the application.
+    implementation 'com.google.guava:guava:31.0.1-jre' => makes the application use this JRE instead of the system JRE which makes things more stable, if removed, the app will use the system's JRE
+} => this is used to specify dependencies
+
+implementation 'com.google.guava:guava:31.0.1-jre'
+com.google.guava => groupID
+guava => artifactID
+31.0.1-jre => Version
+implementation => the scope (app vs test)
+
+repositories can also be custom configured
+repositories {
+    // Use Maven Central for resolving dependencies.
+    mavenCentral{
+      url = "..."
+    }
+}
+as typically, organizations have their own repositories 
+
+we also have mavenLocal()
+this points to ~/.m2 => in case you have maven installed on your machine
+it contains all the dependencies that have already been pulled by other projects that use maven instead of gradle
+as for gradle dependencies, they are downloaded into .gradle/caches/modules-X/files-X.Y
+
+The repositories as searched in the order they are defined
