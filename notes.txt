@@ -111,3 +111,28 @@ testComipleOnly
 ... etc
 
 compile => can cause leaks of dependencies from one project to another in case on project had the other as a dependency
+
+Gradle Phases
+=============
+Iinitializations
+Configuration
+Execution
+
+doFirst / doLast
+
+println 'gradle rocks!!' => runs in configuration phase
+task firstTask {
+  println 'gradle rocks!' => runs in configuration phase
+  doFirst(){
+    println 'first' => runs in execution phase
+  }
+  doLast(){
+    println 'last' runs in execution phase
+  }
+}
+
+using --daemon => from 2nd build and up, the build become faster
+the daemon caches build infromation in memory
+--no--daemon => forces gradle not to use daemon
+
+
