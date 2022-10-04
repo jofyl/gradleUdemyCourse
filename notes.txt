@@ -1,0 +1,39 @@
+Gradel is build automation tool
+comiple, then run the tests
+package the compiled source into packages (jar, war)
+deploy and run
+
+gradle uses groovy or kotlyn for scrippting instead of XML
+
+gradle allow customization on how dependencies are pulled (custom rules and custom rules)
+
+incremental builds
+build cache
+daemon
+
+to install gradle
+https://gradle.org/install/
+
+for windows use: gradlew.bat
+for linux/mac: gradlew
+=> w stands for "wrapper"
+
+to make a folder a gradle project: gradle init
+
+DSL: Domain Specific Language
+we say, script DSP
+
+gradle tasks tries to find and list and available tasks in gradle.build
+
+to add a task:
+task fistTask {
+  //do something
+}
+
+using camel case allows you call the task in abrev mode
+"gradle fistTask" OR "gradle fT"
+
+gradlew file, is an executable => automatically installs gradle for the project, that way you do not need to to have a global version of gradle installed
+also maintins its current version unless you update it
+that way you have gradle per project
+it uses the config from gradle/wrapper/gradle-wrapper.properties
