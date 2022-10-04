@@ -26,7 +26,7 @@ to make a folder a gradle project: gradle init
 DSL: Domain Specific Language
 we say, script DSP
 
-gradle tasks tries to find and list and available tasks in gradle.build
+gradle tasks tries to find and list and available tasks in build.gradle
 
 to add a task:
 task fistTask {
@@ -43,7 +43,7 @@ it uses the config from gradle/wrapper/gradle-wrapper.properties
 
 Creating a Java project
 =======================
-in gradle.build
+in build.gradle
 include('app') => "app" name of the folder that contains src/main/... etc
 
 gradle is not heavy
@@ -79,7 +79,7 @@ implementation 'com.google.guava:guava:31.0.1-jre'
 com.google.guava => groupID
 guava => artifactID
 31.0.1-jre => Version
-implementation => the scope (app vs test)
+implementation => the scope or configurations (app vs test)
 
 repositories can also be custom configured
 repositories {
@@ -96,3 +96,18 @@ it contains all the dependencies that have already been pulled by other projects
 as for gradle dependencies, they are downloaded into .gradle/caches/modules-X/files-X.Y
 
 The repositories as searched in the order they are defined
+
+implementation and testImplementation come with the java pluggin
+they allow one to control which dependencies reach the final jar/war file
+
+Configurations
+==============
+gradle provides granular control
+implementation
+testImplementation
+comipleOnly
+runtimeOnly
+testComipleOnly
+... etc
+
+compile => can cause leaks of dependencies from one project to another in case on project had the other as a dependency
