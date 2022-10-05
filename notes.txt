@@ -135,4 +135,33 @@ using --daemon => from 2nd build and up, the build become faster
 the daemon caches build infromation in memory
 --no--daemon => forces gradle not to use daemon
 
+Goovy crash course
+==================
+Goovy can be ran as a script without a main() method
 
+Declaring variables:
+1) inside main method: you must specify the variable's type: String s = "hello"
+2) as a script wihout a main method, you do not need to sepcify the type: s = "hello"
+you can also use "${s}" => this will replace $s with the value of s
+
+for strings, single and double quotes can be used
+
+Also multiple line Strings can be used:
+S = '''
+hello,
+my name is groovy
+!!
+'''
+
+groovy script regular expression
+emailPatern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/
+print "test@gmail.com" ==~ emailPatern
+
+==~ this is called the find/pattern operator
+
+a.class => get the class type of a variable
+
+vairables can also be defined using "def"
+def u = "james"
+def i = 1
+but this is not recommended
