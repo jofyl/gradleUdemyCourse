@@ -192,3 +192,26 @@ iterators with closures:
 4.times {n->println n} => iterates on 4 (0->3) and passes it as an input argument to the closure
 4.times {println it} => iterates on 4 (0->3) and prints the object being iterated on
 it => a keyword in groovy that denotes the object (something similar to "this")
+
+Collections
+-----------
+l = [1,2,3]
+l << 4 => shift left operator, appends to list
+l = l + [5,6] => append another list to the list
+l = l - [3,2] => remove items from the list
+
+some operations that can be done on lists
+l.each {println(it)}
+l.eachPermutation {println(it)}
+l.reverseEach {println(it)}
+
+Sets and Maps
+-------------
+s = ["java", "python", "js", "python"] as Set
+sets do filter out duplicates
+
+m = [james:"nounou", wiki:"susu", jiji:345]
+looping over map elements
+m.each {k, v ->
+    println(k + ' / ' + v)
+}
