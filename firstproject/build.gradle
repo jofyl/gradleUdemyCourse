@@ -15,3 +15,25 @@ task firstTask {
     println 'last'
   }
 }
+
+task deployToStage {
+  doLast(){
+    println("deployed to stage")
+  }
+}
+
+task cleanUpFiles {
+  doLast{
+    println("finish")
+  }
+}
+
+task deployToProd {
+  doLast(){
+    println("deployed to prod")
+  }
+}
+
+deployToStage.dependsOn deployToProd
+deployToProd.finalizedBy cleanUpFiles
+defaultTasks "deployToProd"

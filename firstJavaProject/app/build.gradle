@@ -11,7 +11,17 @@ plugins {
     id 'application'
 }
 
+project.description = "blabla"
+project.version = 1.2
+project.ext.xyz = "hello"
+
 repositories {
+    // value of name comes from file settings.gradle
+    println project.name
+    println project.description
+    println project.version
+    println project.xyz
+    println project.property("xyz")
     // Use Maven Central for resolving dependencies.
     mavenCentral()
 }

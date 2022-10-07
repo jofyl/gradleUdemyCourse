@@ -262,3 +262,71 @@ class Patient {
 p2 = new Patient(firstName: "john", lastName: "billo", age: 16)
 
 Static methods and vairables can eb defined as well and accessed using the class name like in Java
+
+
+Gradle Build files
+===================
+repositories {
+    // Use Maven Central for resolving dependencies.
+    mavenCentral()
+}
+
+repositories is infact a method on the "project" Object to which we are passing a closure
+
+repositories ({
+    // Use Maven Central for resolving dependencies.
+    mavenCentral()
+})
+
+---------------
+
+plugins {
+    // Apply the application plugin to add support for building a CLI application in Java.
+    id 'application'
+}
+
+repositories {
+    // value of name comes from file settings.gradle, these are project properties, more can be found at
+    // https://docs.gradle.org/current/userguide/writing_build_scripts.html
+    println project.name
+    println project.description
+    println project.version
+    // Use Maven Central for resolving dependencies.
+    mavenCentral()
+}
+
+if we want to set some values, we will have to do them after the plugins{...} method
+
+when a version is defined and the project rebuilt, we will see a new jar file in app/build/libs with the version as part of the name
+
+adding custom properties:
+project.ext.xyz = "hello"
+then when using it inside a method: project.xyz or project.property("xyz")
+
+Tasks
+-----
+gradle has in built tasks, also some come with the java and application pluggins
+
+task (firstTask) {
+  // do something
+}
+
+OR
+
+task firstTask {
+  // do something
+}
+
+task => method on the project object, project.task(){...}
+the {...} is the action block, we can have doLast({...})
+the action block is a closure we are passing
+
+anything outside doFirst() and doLast() will run in configuration phase and not in "task" phase
+
+tasks can also be made to depend on each other
+deployToStage.dependsOn deployToProd => makes deployToProd run before deployToStage
+deployToProd.finalizedBy cleanUpFiles => makes cleanUpFiles run directly after deployToProd
+
+
+also tasks can be set as defaults:
+defaultTasks "deployToProd" => you call gradle without arguments from the terminal
