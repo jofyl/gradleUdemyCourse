@@ -165,3 +165,30 @@ vairables can also be defined using "def"
 def u = "james"
 def i = 1
 but this is not recommended
+
+Closure:
+--------
+c = {
+    println("hello")
+}
+
+and then you invoke using .call: c.call()
+
+parameters can be passed to closures as well:
+j = { n ->
+    println(n % 2 == 0 ? "even" : "odd")
+}
+
+j = { x, y, n ->
+    println(n % 2 == 0 ? "even" : "odd")
+}
+
+or with default value
+j = { n = 2 ->
+    println(n % 2 == 0 ? "even" : "odd")
+}
+
+iterators with closures:
+4.times {n->println n} => iterates on 4 (0->3) and passes it as an input argument to the closure
+4.times {println it} => iterates on 4 (0->3) and prints the object being iterated on
+it => a keyword in groovy that denotes the object (something similar to "this")
