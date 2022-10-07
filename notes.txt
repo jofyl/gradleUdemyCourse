@@ -244,3 +244,21 @@ void displayMap (Map productDetails){
 displayMap name:"hello",price:50
 displayMap(name:"hello",price:50)
 displayMap([name:"hello",price:50])
+
+Classes
+-------
+class Patient {
+    def firstName, lastName, age
+
+    // this setter method overrides default setter methods
+    void setLastName(lastName){
+        if (lastName == null){
+            throw new IllegalArgumentException("Last Name can not be null!")
+        }
+        this.lastName = lastName
+    }
+}
+
+p2 = new Patient(firstName: "john", lastName: "billo", age: 16)
+
+Static methods and vairables can eb defined as well and accessed using the class name like in Java
