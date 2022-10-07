@@ -215,3 +215,32 @@ looping over map elements
 m.each {k, v ->
     println(k + ' / ' + v)
 }
+
+
+Methods
+-------
+int product(int x, int y) {
+    return x*y
+}
+
+def product2(x,y) {
+    x*y => the last line becomes the return statement
+}
+
+to call the methods:
+product(2, 4)
+result = product2 2, 4
+
+int product3(int x = 3, int y) { => you can set default values
+    return x*y
+}
+
+the syntax below also works and is used with gradle build files
+void displayMap (Map productDetails){
+    println productDetails.name
+    println productDetails.price
+}
+
+displayMap name:"hello",price:50
+displayMap(name:"hello",price:50)
+displayMap([name:"hello",price:50])
