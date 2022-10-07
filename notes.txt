@@ -330,3 +330,16 @@ deployToProd.finalizedBy cleanUpFiles => makes cleanUpFiles run directly after d
 
 also tasks can be set as defaults:
 defaultTasks "deployToProd" => you call gradle without arguments from the terminal
+
+Building a web app - some notes
+-------------------------------
+in plugins
+id 'war' => for war files
+id 'org.gretty' version '4.0.0' => a simple getty server, comes with many commands
+to run the project:
+gradle war
+gradle appRun => runs a getty server
+gradle tomcatRun => runs apache tomcat sever
+
+we can change the port
+gretty.httpPort = 8082
