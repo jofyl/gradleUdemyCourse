@@ -451,3 +451,6 @@ MAIN link is: https://plugins.gradle.org/
 
 then add it as a plugin: id 'org.sonarqube' version '3.4.0.2513'
 
+default login pass: admin/admin
+=> check the documentation for more infromation
+
