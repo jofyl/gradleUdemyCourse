@@ -1,0 +1,8 @@
+plugins {
+    id 'war'
+    id 'org.gretty' version '4.0.0'
+}
+
+dependencies {
+    compileOnly group: 'jakarta.servlet', name: 'jakarta.servlet-api', version: '6.0.0'
+}
