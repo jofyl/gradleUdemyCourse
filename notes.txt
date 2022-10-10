@@ -343,3 +343,65 @@ gradle tomcatRun => runs apache tomcat sever
 
 we can change the port
 gretty.httpPort = 8082
+
+
+For multi-module project
+------------------------
+you crate multiple apps inside the root folder
+in settings.gradle, you include them all (i.e all the submodules), for example:
+rootProject.name = 'couponapp'
+include('web')
+include('data')
+include('integration')
+include('services')
+
+to run a command to a subproject from the root directory, run:
+gralde :subProjectName:Command
+=> example:
+graldle :web:clean
+
+allprojects({
+    => takes a closure
+    => you pass to it the task
+})
+
+example:
+allprojects({
+  task printProjectName {
+    doLast(){
+      println project.name
+    }
+  }
+})
+
+allprojects => reaplce with subprojects => excutes it only for the subprojects
+
+these methods can be found in the gradle documentation related to the "Projects" object
+
+Same build logic can be put in the parent build.gradle's file with one change
+subprojects({
+  apply plugin: 'application' => you use apply plugin: 'pluginName' instead of method with a closure
+  version = '1.0' => apply properties to subprojects
+  group = 'com.joseph.gradle' => apply properties to subprojects
+
+  repositories {
+      mavenCentral()
+  }
+
+  dependencies {
+      testImplementation 'junit:junit:4.13.2'
+  }
+})
+
+=> if logic is defined in a subproject's build.gradle, for example dependencies
+then the subproject inherits the parent's dependencies in addition to its own
+IMPORTANT: version wise, if the same dependency is defined in both places, then the one that sepcifies the highest version is taken
+
+Making a subproject depend on another subproject
+project(':web'){ => use this as when sepcifying this at root project, else simply specify the subproject as a dependency the in a another subproject the classic way
+  dependencies {
+    implementation project (':services')
+  }
+}
+
+gradle :web:dependencies => shows the dependencies tree of subproject "web"
