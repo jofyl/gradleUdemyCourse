@@ -17,6 +17,8 @@
 //    }
 //}
 
+import src.main.groovy.MyAWSPlugin
+
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'war'
@@ -37,7 +39,27 @@ dependencies {
     testImplementation group: 'org.mockito', name: 'mockito-core', version: '4.8.0'
 }
 
+// This can be define here as well as in a separate file
+// public class MyAWSPlugin implements Plugin<Project>{
+//     public void apply(Project project){
+//         project.task("copyToS3"){
+//             doLast {
+//                 println "copied to S3"
+//             }
+//         }
+
+//         project.task("deployToEC2"){
+//             doLast {
+//                 println "Application is up and running on AWS EC2"
+//             }
+//         }
+//     }
+// }
+
+// apply plugin: MyAWSPlugin
+
+apply plugin: MyAWSPlugin
+
 test.finalizedBy jacocoTestReport
 jacocoTestReport.dependsOn test
-
-
+deployToEC2.dependsOn copyToS3

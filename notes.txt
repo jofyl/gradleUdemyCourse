@@ -14,6 +14,9 @@ incremental builds
 build cache
 daemon
 
+Every build.gradle has an object of which of the following Gradle api classes: Project
+so you can use the instance: project.blabl()
+
 to install gradle
 https://gradle.org/install/
 
@@ -130,6 +133,9 @@ task firstTask {
     println 'last' runs in execution phase
   }
 }
+
+The task essentially has a list of the Closures that needs to be run and the choice of doFirst or doLast controls to which end of the list the insert goes to.
+Each doFist or doLast is a closure that gets added to the list, and they are executed in order. Multiple doLast will be executed in the order they are declared while doFrist in reverse order.
 
 using --daemon => from 2nd build and up, the build become faster
 the daemon caches build infromation in memory
@@ -511,3 +517,29 @@ dependencies {
     implementation 'com.google.code.gson:gson'
     implementation 'dom4j:dom4j'
 }
+
+Create a Gradle Pluggin 
+=======================
+every gradle pluggin needs to implement the Pluggin<T> interface
+T can be Project, Settings, Gradle
+this only has 1 method that needs to be implemented "apply(T t)"
+you can then add as many tasks as you want, an implement the logic inside them with doFirst() and doLast(), mainly the latter
+
+once imported in to the build file, the tasks become like any other tasks, you can make them depend on each other... etc
+then simply apply the plugin:
+apply plugin: MyAWSPlugin
+
+to move script to buildSrc/src/main/groovy -> this should be as the same level as the "app" folder
+put it in a .groovy file
+import what you need, for example
+import org.gradle.api.Plugin
+import org.gradle.api.Project
+
+make sure to specify a package for your file, for example
+package src.main.groovy
+
+Then in the build.gradle file,
+import it: import src.main.groovy.MyAWSPlugin
+and apply it: apply plugin: MyAWSPlugin
+
+this will also end up getting build a .jar file and can be found in build/libs/
