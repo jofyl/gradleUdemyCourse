@@ -493,3 +493,21 @@ then visit it, for example: http://localhost:8080/hello
 id 'io.spring.dependency-management' version '1.0.14.RELEASE' => this pluggin has BOM (Bill of Materials), it has all the info needed on which of the dependencies' versions to use
 
 sourceCompatibility = '11' => sets the compatible Java version
+
+Migrate Maven Project to Gradle
+===============================
+go to folder with pom.xml 
+run gradle init => it autodetects the pom.xml file and asks you if you want to use to generate the gradle files
+what will be missing are:
+1) the spring boot pluggins if any (check others if any)
+2) once added (they contain BOM), you can remove the explicit versions from the dependencies
+
+BOMs can also be added inside the dependencies closure
+dependencies {
+    // import a BOM
+    implementation platform('org.springframework.boot:spring-boot-dependencies:1.5.8.RELEASE')
+
+    // define dependencies without versions
+    implementation 'com.google.code.gson:gson'
+    implementation 'dom4j:dom4j'
+}
