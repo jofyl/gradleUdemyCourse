@@ -454,3 +454,16 @@ then add it as a plugin: id 'org.sonarqube' version '3.4.0.2513'
 default login pass: admin/admin
 => check the documentation for more infromation
 
+For Jenkins Config
+==================
+to run jenkins, donwload, and extract, then run: java -jar jenkins.war (that is if you downloaded the .war config)
+Go to Manage Jenkins -> Global Tool Configuration -> Gradle -> configure it (install autoamtically or point to system gradle)
+on mac (if installed with brew): /usr/local/Cellar/gradle/7.5.1_1/libexec
+
+The create a new item "Freestyle Project"
+in build step: Invoke Gradle Script
+pick the gradle version you added in global config
+set Tasks to: clean build (add any other if you want)
+click "Advanced" -> Build file -> point it to build.gradle
+Root Build Script -> you use this if you have a multi-project
+
