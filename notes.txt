@@ -467,3 +467,29 @@ set Tasks to: clean build (add any other if you want)
 click "Advanced" -> Build file -> point it to build.gradle
 Root Build Script -> you use this if you have a multi-project
 
+Spring Boot
+===========
+Use the IDE's spring initializer to set up the project
+spring comes with manny libraries that can be set such as "Spring Web" for RESTful API
+
+the add a simple controller, for example
+package com.joseph.gradle;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController => you add this
+public class HelloGradle {
+
+    @GetMapping("/hello") => you add this
+    public String hello() {
+        return "spring boot with gradle is super easy";
+    }
+}
+
+the you run: gradle bootRun => check console to see where server is running
+then visit it, for example: http://localhost:8080/hello
+
+id 'io.spring.dependency-management' version '1.0.14.RELEASE' => this pluggin has BOM (Bill of Materials), it has all the info needed on which of the dependencies' versions to use
+
+sourceCompatibility = '11' => sets the compatible Java version
